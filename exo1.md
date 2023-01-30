@@ -34,7 +34,7 @@ db.employees.find()
 
 ### Écrivez une requête pour trouver tous les documents où l'âge est supérieur à 33.
 ``` 
- db.employees.find({"age":{$gt:33}})
+ db.employees.find({"age":{$gt:33})
 ``` 
 > Permet d'afficher seulement les données supèrieur à 33 par compris dans la clé "age"
 

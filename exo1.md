@@ -62,7 +62,7 @@ db.employees.aggregate([
     {"$group" : {"_id":"$job", count:{"$sum" : 1}}}
 ])
 ``` 
-> Utilisation de l'aggregation qui permet de réaliser une serie d'opération sur la collection de document. Les opération "$group", "count" et "$sum" permettent de regrouper pour de compter et faire la somme des documents "id" ayant le même document "job"
+> Utilisation de l'aggregation qui permet de réaliser une serie d'opération sur la collection de document. Les opération "$group", "count" et "$sum" permettant de les regrouper, compter et faire la somme des documents "id" ayant le même document "job"
 
 #
 

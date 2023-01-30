@@ -28,7 +28,7 @@ Insérez les documents suivants dans la collection "employees":
 ``` 
 db.employees.find() 
 ```
-> permet d'afficher toute les données du document 
+> Permet d'afficher toute les données du document 
 
 #
 
@@ -36,7 +36,7 @@ db.employees.find()
 ``` 
  db.employees.find({"age":{$gt:33}})
 ``` 
-> permet d'afficher seulement les données supèrieur à 33 par compris dans la clé "age"
+> Permet d'afficher seulement les données supèrieur à 33 par compris dans la clé "age"
 
 #
 
@@ -44,7 +44,7 @@ db.employees.find()
 ``` 
 db.employees.find().sort()({"salary":-1})
 ``` 
-> permet d'afficher toutes les données trier par rapport à la clé "salary" en ordre décroissant 
+> Permet d'afficher toutes les données trier par rapport à la clé "salary" en ordre décroissant 
 
 #
 
@@ -52,14 +52,17 @@ db.employees.find().sort()({"salary":-1})
 ``` 
 db.employees.find({}, {"name": 1,"job":1})
 ``` 
-> récupère toute les données mais n'affiche que les données en rapport avec les clé "name" & "job" 
+> Récupère toute les données mais n'affiche que les données en rapport avec les clé "name" & "job" 
 
 #
 
 ### Écrivez une requête pour compter le nombre d'employés par poste.
 ``` 
-
+db.employees.aggregate([
+    {"$group" : {"_id":"$job", count:{"$sum" : 1}}}
+])
 ``` 
+> Utilisation de l'aggregation qui permet de réaliser une serie d'opération sur la collection de document. Les opération "$group", "count" et "$sum" permettent de regrouper pour de compter et faire la somme des documents "id" ayant le même document "job"
 
 #
 

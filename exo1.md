@@ -62,13 +62,23 @@ db.employees.aggregate([
     {"$group" : {"_id":"$job", count:{"$sum" : 1}}}
 ])
 ``` 
-> Utilisation de l'aggregation qui permet de réaliser une serie d'opération sur la collection de document. Les opération "$group", "count" et "$sum" permettant de les regrouper, compter et faire la somme des documents "id" ayant le même document "job"
+> Utilisation de l'aggregation qui permet de réaliser une serie d'opération sur la collection de document. Les opération "$group", "count" et "$sum" permettant de les regrouper, les compter et faire la sommes des clés "id" ayant le même document "job"
 
 #
 
 ### Écrivez une requête pour mettre à jour le salaire de tous les développeurs à 80000.
 ``` 
-
+db.employees.updateMany(
+    {
+        "job": "Developer",
+        "job": "Manager"
+    },
+    {
+        $set: {
+            salary: 80000
+        },
+    }
+);
 ``` 
->
+> Utilisation de UpdateMany pour mettre à jour plusieurs valeurs. Utilisation de "$set" pour positionner la nouvelle valeur
 

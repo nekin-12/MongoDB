@@ -83,7 +83,7 @@ db.salles.find({}, {"_id":1,"nom":1, "smac":true})
 Affichez le nom des salles qui possèdent une capacité d’accueil strictement supérieure à 1000 places.
 
 ```
-code
+db.salles.find({"capacite":{$gt:1000}}, {"nom": 1})
 ```
 >comment
 
@@ -94,7 +94,7 @@ code
 Affichez l’identifiant des salles pour lesquelles le champ adresse ne comporte pas de numéro.
 
 ```
-code
+db.salles.find({},{"_id": 1, "adresse": {"numero":1}})
 ```
 >comment
 
@@ -116,7 +116,7 @@ code
 Affichez tous les styles musicaux des salles qui programment notamment du blues.
 
 ```
-code
+db.salles.find({"styles": {$eq: "blues"}},{"nom": 1, "styles": 1})
 ```
 >comment
 

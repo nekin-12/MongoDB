@@ -105,7 +105,7 @@ db.salles.find({},{"_id": 1, "adresse": {"numero":1}})
 Affichez l’identifiant puis le nom des salles qui ont exactement un avis.
 
 ```
-code
+db.salles.find({"avis": {$size:1}}, {"_id":1,"nom":1, "avis":1})
 ```
 >comment
 
@@ -127,7 +127,7 @@ db.salles.find({"styles": {$eq: "blues"}},{"nom": 1, "styles": 1})
 Affichez tous les styles musicaux des salles qui ont le style « blues » en première position dans leur tableau styles.
 
 ```
-code
+db.salles.find({"styles.0": "blues"} , {"_id":1,"nom":1, "styles":1})
 ```
 >comment
 
@@ -138,7 +138,7 @@ code
 Affichez la ville des salles dont le code postal commence par 84 et qui ont une capacité strictement inférieure à 500 places (pensez à utiliser une expression régulière).
 
 ```
-code
+db.salles.find({"adresse": {"codePostal": {$regex: /^84/}}, "capacites": {$lt:"500"}}, {"_id":1,"adresse":{"ville":1}})
 ```
 >comment
 
@@ -149,7 +149,7 @@ code
 Affichez l’identifiant pour les salles dont l’identifiant est pair ou le champ avis est absent.
 
 ```
-code
+db.salles.find({"avis": {$exists: false}}, {"_id":1})
 ```
 >comment
 
@@ -160,7 +160,10 @@ code
 Affichez le nom des salles dont au moins un des avis comporte une note comprise entre 8 et 10 (tous deux inclus).
 
 ```
-code
+db.salles.find(
+ 
+    {"avis":  $or:[$gte: "note":"8", $lte: "note":"10"]}, {"_id":1}
+  )
 ```
 >comment
 

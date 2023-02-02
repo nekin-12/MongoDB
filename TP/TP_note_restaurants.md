@@ -25,12 +25,14 @@ a. Recherchez les restaurants qui sont ouverts à partir de 18h00. Utilisez la m
 > ```
 > db.michelin.find({"Hour":{$eq:18}}, {"Name": 1, "Location":1, "Price":1})
 > ```
+>![image](img/openHour.png)
 
 b. Triez les restaurants par note, du plus haut au plus bas. Utilisez la méthode sort () pour trier les résultats.
 
 > ```
 > db.michelin.find().sort({"Award": 1})
 > ```
+>![image](img/award.png)
 
 # Indexation avec MongoDB:
 a. Créez un index sur le champ d'ouverture des restaurants pour améliorer les performances de la recherche. Utilisez la méthode createIndex ().

@@ -15,7 +15,7 @@ b. Assurez-vous d'avoir un champ de localisation géospatiale, comme la latitude
 # Requêtes MongoDB:
 a. Recherchez les restaurants qui sont ouverts à partir de 18h00. Utilisez la méthode find () et les opérateurs de comparaison pour trouver les documents qui correspondent à vos critères.
 
-> Étant donné que ma collection n'avait pas de `key` Heure ni de `value` qui va avec, je l'ai donc crée en utilisant `aggregate` pour récupérer les `value` aléatoirement:
+> Étant donné que ma collection n'avait pas de `key` Heure ni de `value` associé, je l'ai donc crée en utilisant `aggregate` pour récupérer les `value` aléatoirement à l'aide de la requète suivante:
 >
 > ```
 > db.michelin.aggregate(
@@ -27,7 +27,7 @@ a. Recherchez les restaurants qui sont ouverts à partir de 18h00. Utilisez la m
 >)
 > ```
 > 
-> Recherche des restaurants ouvrant à 18h00:
+> Requète des restaurants ouvrant à 18h00:
 > ```
 > db.michelin.find({"Hour":{$eq:18}}, {"Name": 1, "Location":1, "Price":1})
 > ```
@@ -106,8 +106,15 @@ a. Calculez la moyenne des notes des restaurants. Utilisez le framework d'agrég
 b. Trouvez les restaurants les plus populaires en fonction du nombre de commentaires. Utilisez le framework d'agrégation de MongoDB pour groupes les données et effectuer des calculs.
 
 > ```
-> 
+> db.michelin.aggregate([
+> {
+>   $group: { "_id":{name:"$Name"}, count:{ "$sum" : "$Comments" } }
+> },{
+>   $sort: { count:-1 }
+>   }
+> ])
 > ```
+>![image](img/more-comments.png)
 
 &nbsp;	
 
@@ -118,7 +125,10 @@ b. Trouvez les restaurants les plus populaires en fonction du nombre de commenta
 # Export de la base de données:
 a. Exportez les résultats des requêtes dans un fichier CSV pour un usage ultérieur. Utilisez la commande mongoexport pour exporter des données de MongoDB.
 
+>
 > ```
-> 
+> .\mongoexport.exe --uri="mongodb+srv://testcluster.q3kqr4t.mongodb.net/TP_Restaurant" --port=27017 --username=admin --password=IcRSIV2 --collection=michelin --fields=_id,Name,Address,Location,Price,Cuisine,PhoneNumber,Url,WebsiteUrl,Award,FacilitiesAndServices,Hour,coord,Comments --type=csv --out=C:\Temp\tp_restaurant.csv
 > ```
-
+> Résultat :
+>![image](img/export.png)
+>![image](img/export-file.png)

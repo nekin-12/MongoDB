@@ -1,6 +1,9 @@
 # Préparation des données:
 a. Importez un jeu de données de localisation, comme les restaurants dans une ville. Vous pouvez utiliser la commande mongoimport pour importer des données dans MongoDB.
 
+>```
+>.\mongoimport.exe --uri="mongodb+srv://testcluster.q3kqr4t.mongodb.net/TP_Restaurant" --port=27017 --username=admin --password=IcRSIV2 --collection=michelin  --fields=Name,Address,Location,Price,Cuisine,Longitude,Latitude,PhoneNumber,Url,WebsiteUrl,Award,FacilitiesAndServices --type=csv --file=C:\Users\chris\Downloads\michelin_my_maps.csv\michelin_my_maps.csv
+>```
 >![image](img/import.png)
 
 b. Assurez-vous d'avoir un champ de localisation géospatiale, comme la latitude et la longitude.

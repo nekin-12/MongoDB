@@ -6,6 +6,12 @@ a. Importez un jeu de données de localisation, comme les restaurants dans une v
 b. Assurez-vous d'avoir un champ de localisation géospatiale, comme la latitude et la longitude.
 >![image](img/coord.png)
 
+&nbsp;	
+
+---
+
+&nbsp;
+
 # Requêtes MongoDB:
 a. Recherchez les restaurants qui sont ouverts à partir de 18h00. Utilisez la méthode find () et les opérateurs de comparaison pour trouver les documents qui correspondent à vos critères.
 
@@ -34,6 +40,12 @@ b. Triez les restaurants par note, du plus haut au plus bas. Utilisez la méthod
 > ```
 >![image](img/award.png)
 
+&nbsp;	
+
+---
+
+&nbsp;
+
 # Indexation avec MongoDB:
 a. Créez un index sur le champ d'ouverture des restaurants pour améliorer les performances de la recherche. Utilisez la méthode createIndex ().
 
@@ -46,11 +58,14 @@ b. Vérifiez que l'index a été créé en utilisant la méthode listIndexes ().
 > Comme on peut le constater l'inex `openHour` à bien été créé.
 > ```
 > db.michelin.getIndexes()
->[
->  { v: 2, key: { _id: 1 }, name: '_id_' },
->  { v: 2, key: { Hour: 1 }, name: 'openHour' }
->]
 > ```
+>![image](img/index.png)
+
+&nbsp;	
+
+---
+
+&nbsp;
 
 # Requêtes géospatiales:
 a. Recherchez les restaurants qui se trouvent à moins de 2 km d'une certaine localisation. Utilisez la méthode find () avec un opérateur géospatial pour trouver les restaurants à l'intérieur d'un cercle.
@@ -73,6 +88,12 @@ b. Recherchez les restaurants qui se trouvent dans un certain rayon autour d'un 
 > ```
 >![image](img/find-radius-circle.png)
 
+&nbsp;	
+
+---
+
+&nbsp;
+
 # Framework d'agrégation:
 a. Calculez la moyenne des notes des restaurants. Utilisez le framework d'agrégation de MongoDB pour effectuer des calculs sur les données.
 
@@ -87,6 +108,12 @@ b. Trouvez les restaurants les plus populaires en fonction du nombre de commenta
 > ```
 > 
 > ```
+
+&nbsp;	
+
+---
+
+&nbsp;
 
 # Export de la base de données:
 a. Exportez les résultats des requêtes dans un fichier CSV pour un usage ultérieur. Utilisez la commande mongoexport pour exporter des données de MongoDB.

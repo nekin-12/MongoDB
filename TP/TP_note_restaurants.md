@@ -1,14 +1,15 @@
 # Préparation des données:
 a. Importez un jeu de données de localisation, comme les restaurants dans une ville. Vous pouvez utiliser la commande mongoimport pour importer des données dans MongoDB.
 
->
+>![image](img/import.png)
 
 b. Assurez-vous d'avoir un champ de localisation géospatiale, comme la latitude et la longitude.
+>![image](img/coord.png)
 
 # Requêtes MongoDB:
 a. Recherchez les restaurants qui sont ouverts à partir de 18h00. Utilisez la méthode find () et les opérateurs de comparaison pour trouver les documents qui correspondent à vos critères.
 
-> Étant donné que ma collection n'avait pas de "key" Heure ni de "value" qui va avec, je l'ai donc crée en utilisant "aggregate" pour récupérer les "value" aléatoirement:
+> Étant donné que ma collection n'avait pas de `key` Heure ni de `value` qui va avec, je l'ai donc crée en utilisant `aggregate` pour récupérer les `value` aléatoirement:
 >
 > ```
 > db.michelin.aggregate(
@@ -40,7 +41,7 @@ a. Créez un index sur le champ d'ouverture des restaurants pour améliorer les 
 
 b. Vérifiez que l'index a été créé en utilisant la méthode listIndexes ().
 
-> Comme on peut le constater l'inex "openHour" à bien été créé.
+> Comme on peut le constater l'inex `openHour` à bien été créé.
 > ```
 > db.michelin.getIndexes()
 >[
@@ -52,30 +53,30 @@ b. Vérifiez que l'index a été créé en utilisant la méthode listIndexes ().
 # Requêtes géospatiales:
 a. Recherchez les restaurants qui se trouvent à moins de 2 km d'une certaine localisation. Utilisez la méthode find () avec un opérateur géospatial pour trouver les restaurants à l'intérieur d'un cercle.
 
->J'ai commencé par créer la variable "METERS_PER_MILE" ayant pour value "1609.34" (ce qui équivaut à 1 miles).
+>J'ai commencé par créer la variable `METERS_PER_MILE` ayant pour `value: 1609.34` (ce qui équivaut à 1 miles).
 >
 > ```
 >var METERS_PER_MILE = 1609.34
 >```
-> Ensuite j'effectue la recherche et j'utilise ma variable pour établir la zone de 2km
+> Ensuite j'effectue la recherche et j'utilise ma variable pour établir la distance de 2km
 >```
 > db.michelin.find({ coord: { $nearSphere: { $geometry: { type: "Point", coordinates: [ -73.93414657, 40.82302903 ] }, $maxDistance: 2 * METERS_PER_MILE } } })
 > ```
+>![image](img/find-point.png)
 
 b. Recherchez les restaurants qui se trouvent dans un certain rayon autour d'un point de localisation spécifique. Utilisez la méthode find () avec un opérateur géospatial pour trouver les restaurants à l'intérieur d'un cercle.
 
 > ```
-> 
+> db.michelin.find({ coord:{ $geoWithin: { $centerSphere: [ [ -73.93414657, 40.82302903 ], 5 / 3963.2 ] } } })
 > ```
+>![image](img/find-radius-circle.png)
 
 # Framework d'agrégation:
 a. Calculez la moyenne des notes des restaurants. Utilisez le framework d'agrégation de MongoDB pour effectuer des calculs sur les données.
 
->
->
 > ```
 > db.michelin.aggregate([
->    {"$group" : {"_id":"$Award", count:{"$sum" : 1}}}
+>    {"$group" : {"_id":"$Award", count:{"$sum" : 5}}}
 > ])
 > ```
 
